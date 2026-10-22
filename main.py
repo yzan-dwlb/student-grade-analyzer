@@ -7,21 +7,21 @@ def calculate_avg(student_grades):
     return total_grades / count
 
 def find_highest(student_grades):
-    max = 0
+    maximum = 0
     sub = ""
     for subject, grade in student_grades.items():
-        if grade > max:
-            max = grade
+        if grade > maximum:
+            maximum = grade
             sub = subject
-    print(f"Highest grade: {sub} : {max}")
+    return sub, maximum
 def find_lowest(student_grades):
-    min = 101
+    minimum = 101
     sub = ""
     for subject, grade in student_grades.items():
-        if grade < min:
-            min = grade
+        if grade < minimum:
+            minimum = grade
             sub = subject
-    print(f"Lowest grade: {sub} : {min}")
+    return sub, minimum
 
 print("Welcome to grade analyzer!")
 student_grades = {
@@ -33,9 +33,12 @@ student_grades = {
 for subject, grade in student_grades.items():
     print(subject + ": " + f"{grade}")
 
-    print(f"The average grade is: {calculate_avg(student_grades)}")
-    find_lowest(student_grades)
-    find_highest(student_grades)
+print(f"The average grade is: {calculate_avg(student_grades)}")
+sub1, minimum = find_lowest(student_grades)
+sub2, maximum = find_highest(student_grades)
+print(f"Highest Grade: {sub2} : {maximum}")
+print(f"Lowest Grade: {sub1} : {minimum}")
+    
 
 
 
