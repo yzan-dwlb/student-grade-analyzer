@@ -81,3 +81,4 @@ sub2, maximum = find_highest(student_grades)
 print(f"Highest Grade: {sub2} : {maximum}")
 print(f"Lowest Grade: {sub1} : {minimum}")
 print(student_grades)
+
