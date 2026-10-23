@@ -1,16 +1,44 @@
 from main import calculate_avg, find_highest, find_lowest
+import unittest
 
-grades = {
-    "math": 90,
-    "python": 80,
-    "statistics": 100
-}
+class TestGradeAnalyzer(unittest.TestCase):
+    
+    def setUp(self):
+        self.grades = {
+            "math": 90,
+            "python": 80,
+             "statistics": 100
+        }
 
-assert calculate_avg(grades) == 90
-assert find_highest(grades) == ("statistics", 100)
-assert find_lowest(grades) == ("python", 80)
-assert calculate_avg({}) == 0
-assert find_highest({"math": 0, "python": 0}) == ("math", 0)
-assert find_lowest({"statistics": 75}) == ("statistics", 75)
 
-print("All 6 tests passed successfully!")
+    def test_avg(self):
+        self.assertEqual(calculate_avg(self.grades), 90)
+
+
+    def test_highest(self):
+        self.assertEqual(find_highest(self.grades), ("statistics", 100))
+
+
+    def test_lowest(self):
+        self.assertEqual(find_lowest(self.grades), ("python", 80))
+    
+    def test_empty_avg(self):
+        grades = {
+                }
+        self.assertEqual(calculate_avg(grades), 0)
+
+
+    def test_zero_highest(self):
+        grades ={
+            "math" : 0,
+            "python" : 0
+        }
+        self.assertEqual(find_highest(grades), ("math", 0))
+    def test_single_lowest(self):
+        grades = {
+            "stats" : 75
+        }
+        self.assertEqual(find_lowest(grades), ("stats", 75))
+
+if __name__ == "__main__":
+    unittest.main()
