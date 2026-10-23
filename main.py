@@ -47,7 +47,15 @@ while True:
 
 student_grades = {}
 for i in range(amount):
-    sub = input("Enter subject name: ")
+    while True:
+        sub = input("Enter subject name: ").strip().lower()
+        if not sub:
+            print("Course name can not be empty!")
+            continue
+        if sub in student_grades:
+            print("Duplicate course name, please enter a new course!")
+        else:
+            break
     while True:
         try:
             grade = int(input("Enter subject grade: "))
@@ -68,8 +76,3 @@ sub2, maximum = find_highest(student_grades)
 print(f"Highest Grade: {sub2} : {maximum}")
 print(f"Lowest Grade: {sub1} : {minimum}")
 print(student_grades)
-
-
-
-
-
