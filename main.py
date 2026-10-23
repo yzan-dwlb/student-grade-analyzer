@@ -1,3 +1,18 @@
+import csv
+from csv_practice import load_grades, save_grades 
+
+def get_useru():
+    while True:
+        try:
+            useru = int(input("Enter option: "))
+            while useru > 2 or useru <= 0:
+                print("Invalid number!")
+                useru = int(input("Enter option: "))
+            return useru
+        except ValueError:
+            print("Please enter a valid number!")
+
+
 def get_student_grades():
     while True:
         try:
@@ -69,16 +84,39 @@ def find_lowest(student_grades):
             sub = subject
     return sub, minimum
 
-if __name__ == "__main.py__":
-    print("Welcome to grade analyzer!")
-    student_grades = get_student_grades()
-    for subject, grade in student_grades.items():
-        print(f"{subject}: {grade}")
 
-    print(f"The average grade is: {calculate_avg(student_grades)}")
-    sub1, minimum = find_lowest(student_grades)
-    sub2, maximum = find_highest(student_grades)
-    print(f"Highest Grade: {sub2} : {maximum}")
-    print(f"Lowest Grade: {sub1} : {minimum}")
-    print(student_grades)
+
+if __name__ == "__main__":
+    while True:
+        print("Welcome to grade analyzer!")
+        print("1.Import Grades")
+        print("2.Enter Grades")
+        useru = get_useru()
+        if useru == 1:
+            grades_ready = True
+            try:
+                student_grades = load_grades()
+                
+            except FileNotFoundError:
+                print("No saved file was found!")
+                grades_ready = False
+                    
+        else:
+            grades_ready = True
+            student_grades = get_student_grades()
+            save_grades(student_grades)
+            for subject, grade in student_grades.items():
+                print(f"{subject}: {grade}")
+        if(grades_ready):
+            print(f"The average grade is: {calculate_avg(student_grades)}")
+            sub1, minimum = find_lowest(student_grades)
+            sub2, maximum = find_highest(student_grades)
+            print(f"Highest Grade: {sub2} : {maximum}")
+            print(f"Lowest Grade: {sub1} : {minimum}")
+            print(student_grades)
+            break
+       
+        
+
+    
 

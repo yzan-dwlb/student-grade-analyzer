@@ -1,8 +1,8 @@
 from main import calculate_avg, find_highest, find_lowest
 import unittest
+from csv_practice import load_grades , save_grades
 
 class TestGradeAnalyzer(unittest.TestCase):
-    
     def setUp(self):
         self.grades = {
             "math": 90,
@@ -40,5 +40,8 @@ class TestGradeAnalyzer(unittest.TestCase):
         }
         self.assertEqual(find_lowest(grades), ("stats", 75))
 
+    def test_save_grade(self):
+       save_grades(self.grades, "test_grades")
+       self.assertEqual(load_grades("test_grades"), self.grades)
 if __name__ == "__main__":
     unittest.main()
