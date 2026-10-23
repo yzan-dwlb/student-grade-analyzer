@@ -73,7 +73,7 @@ def find_lowest(student_grades):
 print("Welcome to grade analyzer!")
 student_grades = get_student_grades()
 for subject, grade in student_grades.items():
-    print(subject + ": " + f"{grade}")
+    print(f"{subject}: {grade}")
 
 print(f"The average grade is: {calculate_avg(student_grades)}")
 sub1, minimum = find_lowest(student_grades)
