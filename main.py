@@ -1,3 +1,39 @@
+def get_student_grades():
+    while True:
+        try:
+            amount = int(input("Enter amount of courses: "))
+            if amount <= 0:
+                print("Please enter a positive number!")
+            else:
+                break
+        except ValueError:
+            print("Please enter a number!")
+
+    student_grades = {}
+    for i in range(amount):
+        while True:
+            sub = input("Enter subject name: ").strip().lower()
+            if not sub:
+                print("Course name can not be empty!")
+                continue
+            if sub in student_grades:
+                print("Duplicate course name, please enter a new course!")
+            else:
+                break
+        while True:
+            try:
+                grade = int(input("Enter subject grade: "))
+                if grade > 100 or grade < 0:
+                    print("Please enter a grade between 0-100")
+                else:
+                    student_grades[sub] = grade
+                    break
+
+            except ValueError:
+                print("Invalid input! Please enter a number.")
+
+    return student_grades
+
 
 def calculate_avg(student_grades):
     total_grades = 0
@@ -35,38 +71,7 @@ def find_lowest(student_grades):
 
 
 print("Welcome to grade analyzer!")
-while True:
-    try:
-        amount = int(input("Enter amount of courses: "))
-        if amount <= 0:
-            print("Please enter a positive number!")
-        else:
-            break
-    except ValueError:
-        print("Please enter a number!")
-
-student_grades = {}
-for i in range(amount):
-    while True:
-        sub = input("Enter subject name: ").strip().lower()
-        if not sub:
-            print("Course name can not be empty!")
-            continue
-        if sub in student_grades:
-            print("Duplicate course name, please enter a new course!")
-        else:
-            break
-    while True:
-        try:
-            grade = int(input("Enter subject grade: "))
-            if grade > 100 or grade < 0:
-                print("Please enter a grade between 0-100")
-            else:
-                student_grades[sub] = grade
-                break
-
-        except ValueError:
-            print("Invalid input! Please enter a number.")
+student_grades = get_student_grades()
 for subject, grade in student_grades.items():
     print(subject + ": " + f"{grade}")
 
